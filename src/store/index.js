@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    currentUser:[],
     products: [
       {
         id: 1,
@@ -128,6 +129,10 @@ export default new Vuex.Store({
     billProduct:[]
   },
   mutations: {
+    getUser(state,payload){
+      state.currentUser = payload;
+    },
+
     changeState(state, payload) {
       state.products.forEach((item) => {
         if (payload === item.id) {

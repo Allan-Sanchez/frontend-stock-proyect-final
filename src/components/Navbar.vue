@@ -9,37 +9,58 @@
         transition="scale-transition"
         width="40"
       />
-      <span class="text-h4 font-weight-bold">Ingredients</span>
+      <span
+        style="cursor:pointer"
+        class="text-h4 font-weight-bold"
+        @click="homePage()"
+        >Ingredients</span
+      >
     </div>
 
     <v-spacer></v-spacer>
 
-    <v-btn to="/provider-home"  text>
-      <span class="mr-2 font-weight-bold text-h6">Home</span>
-    </v-btn>
-    
     <v-btn text to="/provider-cart">
-    <v-badge
-        :content="count"
-        :value="count"
-        color="teal"
-        overlap
-      >
+      <v-badge :content="count" :value="count" color="teal" overlap>
         <v-icon large>mdi-cart</v-icon>
       </v-badge>
     </v-btn>
-    
+
+    <v-btn
+      v-if="logout"
+      class="mx-2"
+      to="/provider-home"
+      color="blue-grey"
+      @click="userLogout()"
+    >
+      <span class="mr-2 font-weight-bold text-h6">Logout</span>
+    </v-btn>
   </v-app-bar>
 </template>
 
 <script>
 export default {
-  props:['count'],
+  props: ["count"],
   name: "Navbar",
   data() {
-      return {
-          messages: 5,
-      }
+    return {
+      logout: false,
+    };
+  },
+  mounted() {
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.logout = true;
+    }
+  },
+  methods: {
+    homePage() {
+      this.$router.push("/provider-home");
+    },
+    userLogout() {
+      localStorage.removeItem("token");
+      this.logout = false;
+      this.$router.push("/provider-home");
+    },
   },
 };
 </script>
