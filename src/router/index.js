@@ -47,6 +47,11 @@ const routes = [
         path:'users',
         name:'AdminProvider-Users',
         component: () => import(/* webpackChunkName: "about" */ '../views/AdminProvider/Users.vue'),
+      },
+      {
+        path:'state',
+        name:'AdminProvider-State',
+        component: () => import(/* webpackChunkName: "about" */ '../views/AdminProvider/State.vue'),
       }
     ]
     

@@ -25,7 +25,7 @@
       <span class="mr-2 font-weight-bold text-h6">Users</span>
     </v-btn>
 
-    <v-btn to="/provider-home" text>
+    <v-btn to="/adminprovider/state" text>
       <span class="mr-2 font-weight-bold text-h6">State</span>
     </v-btn>
 
