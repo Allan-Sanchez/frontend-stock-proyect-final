@@ -2,10 +2,20 @@
   <v-container>
     <Navbar :count="count"></Navbar>
     <v-main>
+       <v-snackbar class="py-5" :color="snackbar.color" v-model="snackbar.show">
+        {{ snackbar.text }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn text v-bind="attrs" @click="snackbar.show = false">
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+
       <v-row>
         <v-col v-for="(item, index) in arrayProducts" :key="index" cols="4">
           <v-card class="mx-auto my-12" max-width="374">
-            <v-img height="200" :src="require(`../assets/ingredients/${item.image}`)"></v-img>
+            <v-img height="200" :src="item.image"></v-img>
 
             <v-card-title>{{item.name}}</v-card-title>
 
@@ -40,6 +50,7 @@
 </template>
 
 <script>
+import clientAxios from "@/config/AxiosClient";
 import Navbar from "@/components/Navbar.vue";
 export default {
   name: "ProviderHome",
@@ -48,11 +59,33 @@ export default {
   },
   data() {
     return {
+      snackbar: {
+        show: false,
+        text: `this is message`,
+        color: "red lighten-2",
+      },
       count:0,
-      arrayProducts: this.$store.state.products,
+      arrayProducts: [],
     };
   },
+  async mounted() {
+     await this.getData();
+     this.arrayProducts = this.$store.state.products;
+  },
   methods: {
+    async getData() {
+      this.desserts = [];
+      try {
+        let res = await clientAxios.get("providers");
+        // console.log(res.data);
+        this.$store.commit('getProduct',res.data);
+        
+      } catch (error) {
+        this.snackbar.show = true;
+        this.snackbar.text = "Error Product page not found";
+        console.log(error);
+      }
+    },
     addCart(id) {
       this.count++;
       this.$store.commit('changeState',id);

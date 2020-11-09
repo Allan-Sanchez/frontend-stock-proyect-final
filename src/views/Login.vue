@@ -74,6 +74,7 @@ export default {
         let res = await clientAxios.post("login", this.form);
         this.$store.commit('getUser',res.data);
         localStorage.setItem('token',res.data.token);
+        localStorage.setItem('userId',res.data.userDetails.userId);
         
         if (res.data.userDetails.userRole === "User") {
           this.$router.push('/provider-home');

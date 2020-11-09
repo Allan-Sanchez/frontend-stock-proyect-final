@@ -7,123 +7,19 @@ export default new Vuex.Store({
   state: {
     currentUser:[],
     products: [
-      {
-        id: 1,
-        name: "Sugar Bag",
-        image: "1.jpg",
-        value: Math.floor(Math.random() * 400),
-        rating: 3,
-        price: 400,
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
-        active: true,
-        quantity:1,
-        total:400
-      },
-      {
-        id: 2,
-        name: "Salt Bag",
-        image: "2.jpg",
-        value: Math.floor(Math.random() * 400),
-        rating: 4,
-        price: 100,
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
-        active: true,
-        quantity:1,
-        total:100
-      },
-      {
-        id: 3,
-        name: "Milk",
-        image: "3.jpg",
-        value: Math.floor(Math.random() * 400),
-        rating: 3.5,
-        price: 600,
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
-        active: true,
-        quantity:1,
-        total:600
-      },
-      {
-        id: 4,
-        name: "Flour Bag",
-        image: "4.jpg",
-        value: Math.floor(Math.random() * 400),
-        rating: 3.5,
-        price: 400,
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
-        active: true,
-        quantity:1,
-        total:400
-      },
-      {
-        id: 5,
-        name: "Chocolate",
-        image: "5.jpg",
-        value: Math.floor(Math.random() * 400),
-        rating: 5,
-        price: 900,
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
-        active: true,
-        quantity:1,
-        total:900
-      },
-      {
-        id: 6,
-        name: "Butter",
-        image: "6.jpg",
-        value: Math.floor(Math.random() * 400),
-        rating: 3.5,
-        price: 200,
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
-        active: true,
-        quantity:1,
-        total:200
-      },
-      {
-        id: 7,
-        name: "Yeast",
-        image: "7.jpg",
-        value: Math.floor(Math.random() * 400),
-        rating: 4.5,
-        price: 350,
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
-        active: true,
-        quantity:1,
-        total:350
-      },
-      {
-        id: 8,
-        name: "Egg",
-        image: "8.png",
-        value: Math.floor(Math.random() * 400),
-        rating: 4.5,
-        price: 200,
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
-        active: true,
-        quantity:1,
-        total:200
-      },
-      {
-        id: 9,
-        name: "Vanilla",
-        image: "9.jpeg",
-        value: Math.floor(Math.random() * 400),
-        rating: 4,
-        price: 150,
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
-        active: true,
-        quantity:1,
-        total:150
-      },
+      // {
+      //   id: 1,
+      //   name: "Sugar Bag",
+      //   image: "../assets/ingredients/1.jpg",
+      //   value: Math.floor(Math.random() * 400),
+      //   rating: 3,
+      //   price: 400,
+      //   description:
+      //     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eos!",
+      //   active: true,
+      //   quantity:1,
+      //   total:400
+      // },
     ],
     cartProduct: [],
     billProduct:[]
@@ -131,6 +27,26 @@ export default new Vuex.Store({
   mutations: {
     getUser(state,payload){
       state.currentUser = payload;
+    },
+    getProduct(state,payload){
+      state.products = [];
+      state.cartProduct = [];
+      payload.forEach(item => {
+        let temp = 
+        {
+          id: item.providerId,
+          name: item.name,
+          image: item.image,
+          value: Math.floor(Math.random() * 400),
+          rating: 4,
+          price:  item.price,
+          description:item.description,
+          active: true,
+          quantity:1,
+          total:item.price
+        }
+        state.products.push(temp)
+      });
     },
 
     changeState(state, payload) {

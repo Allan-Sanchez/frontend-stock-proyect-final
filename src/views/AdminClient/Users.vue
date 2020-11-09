@@ -258,6 +258,7 @@ export default {
         return;
       }
       this.snackbar.show = true;
+      this.snackbar.color = "red lighten-2";
       this.snackbar.text = "The password must be the same in both fields";
     },
     async getData() {
