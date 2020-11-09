@@ -63,7 +63,7 @@
               </v-chip>
 
               <v-chip
-                v-else-if="dataBill.state === 'in transit'"
+                v-else-if="dataBill.state === 'in-Transit'"
                 class="ma-2"
                 color="yellow"
                 text-color="black"
